@@ -14,7 +14,7 @@ type heroSectionProps = {
 };
 const HeroSection = () => {
   const [index, setIndex] = useState<number>(1); //currnent index to be visible
-
+  const isMobile = window.innerWidth < 768;
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null); // this and the function below clears timeout from thread
   function resetTimeout() {
     if (timeoutRef.current) {
@@ -38,37 +38,73 @@ const HeroSection = () => {
 
   return (
     <header className="hero-section">
-      {herosection.map((item) => (
-        <Item index={index} items={item} />
-      ))}
+      {isMobile ? (
+        <div className="hero-section_mobile ">
+          {herosection.map((item) => {
+            return (
+              <>
+                <ImageWithOverlay
+                  index={index}
+                  isMobile={isMobile}
+                  items={item}
+                />
+              </>
+            );
+          })}
+        </div>
+      ) : (
+        herosection.map((item) => {
+          return (
+            <>
+              {index === item.id && (
+                <ImageWithOverlay
+                  isMobile={isMobile}
+                  index={index}
+                  items={item}
+                />
+              )}
+            </>
+          );
+        })
+      )}
     </header>
   );
 };
 
 export default HeroSection;
 
-const Item = ({ items, index }: { items: heroSectionProps; index: number }) => {
+export const ImageWithOverlay = ({
+  items,
+  index,
+  isMobile,
+}: {
+  items: heroSectionProps;
+  index: number;
+  isMobile: boolean;
+}) => {
   return (
     <>
-      {index === items.id && (
-        <div className="hero-image">
-          <Image src={items.img} alt="" />
-          <div className="hero-tag ">
-            <h1 className="mb-4 text-5xl font-extrabold leading-none tracking-tight text-gray-900 md:text-6xl lg:text-7xl dark:text-white">
-              {items.heading}
-            </h1>
-            <p className="text-lg ">{items.tag}</p>
-            <Link href={items.btnLink}>
-              <button
-                type="button"
-                className="text-black  text-lg  md:text-1xl bg-white hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-500 px-4 py-2 "
-              >
-                {items.btnName}
-              </button>
-            </Link>
-          </div>
+      <div className="hero-image">
+        <Image src={items.img} alt="" />
+        <div className="hero-tag ">
+          <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-6xl lg:text-7xl dark:text-white">
+            {items.heading}
+          </h1>
+          {!isMobile && (
+            <>
+              <p className="text-lg ">{items.tag}</p>
+              <Link href={items.btnLink}>
+                <button
+                  type="button"
+                  className="text-black  text-lg  md:text-1xl bg-white hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-500 px-4 py-2 "
+                >
+                  {items.btnName}
+                </button>
+              </Link>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 };
