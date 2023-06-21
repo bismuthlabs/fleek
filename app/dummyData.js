@@ -98,4 +98,96 @@ export const catWomen = [
   },
 ];
 
-export const accordicon = [{}];
+export const newArrivals = [
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+  {
+    name: "Chuck Taylor All Star Leather Platform",
+    price: 399,
+    discount: 699,
+    image: "",
+  },
+];
+
+export const faqs = [
+  {
+    ques: "How do I return an item?",
+    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    ques: "How do I return an item?",
+    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    ques: "How do I return an item?",
+    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    ques: "How do I return an item?",
+    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+];
