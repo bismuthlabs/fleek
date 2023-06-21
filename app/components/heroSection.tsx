@@ -14,8 +14,8 @@ type heroSectionProps = {
 };
 const HeroSection = () => {
   const [index, setIndex] = useState<number>(1); //currnent index to be visible
-  const isMobile = window.innerWidth < 768;
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null); // this and the function below clears timeout from thread
+  let isMobile: boolean = false;
   function resetTimeout() {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -25,6 +25,7 @@ const HeroSection = () => {
   const delay = 2500;
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
     resetTimeout();
     timeoutRef.current = setTimeout(
       () => setIndex((index + 1) % herosection.length),
@@ -87,7 +88,7 @@ export const ImageWithOverlay = ({
       <div className="hero-image">
         <Image src={items.img} alt="" />
         <div className="hero-tag ">
-          <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-6xl lg:text-7xl dark:text-white">
+          <h1 className="mb-4 text-2xl font-extrabold leading-none tracking-tight  md:text-6xl lg:text-7xl text-white">
             {items.heading}
           </h1>
           {!isMobile && (
