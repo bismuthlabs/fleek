@@ -38,6 +38,7 @@ export default function FAQ({ faqs }: { faqs: any }) {
     <Fragment>
       {faqs.map((faq: faqType, index: number) => (
         <Accordion
+          key={index}
           open={open === index + 1}
           icon={<Icon id={index + 1} open={open} />}
         >

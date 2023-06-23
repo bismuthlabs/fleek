@@ -12,10 +12,10 @@ type heroSectionProps = {
   btnName: string;
   btnLink: string;
 };
-const HeroSection = () => {
+export const HeroSection = () => {
   const [index, setIndex] = useState<number>(1); //currnent index to be visible
+  const [isMobile, setIsMobile] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null); // this and the function below clears timeout from thread
-  let isMobile: boolean = false;
   function resetTimeout() {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -25,7 +25,6 @@ const HeroSection = () => {
   const delay = 2500;
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 768;
     resetTimeout();
     timeoutRef.current = setTimeout(
       () => setIndex((index + 1) % herosection.length),
@@ -37,14 +36,19 @@ const HeroSection = () => {
     };
   }, [index]);
 
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   return (
     <header className="hero-section">
       {isMobile ? (
         <div className="hero-section_mobile ">
-          {herosection.map((item) => {
+          {herosection.map((item, index) => {
             return (
               <>
                 <ImageWithOverlay
+                  key={index}
                   index={index}
                   isMobile={isMobile}
                   items={item}
@@ -59,6 +63,7 @@ const HeroSection = () => {
             <>
               {index === item.id && (
                 <ImageWithOverlay
+                  key={item.id}
                   isMobile={isMobile}
                   index={index}
                   items={item}
@@ -71,8 +76,6 @@ const HeroSection = () => {
     </header>
   );
 };
-
-export default HeroSection;
 
 export const ImageWithOverlay = ({
   items,

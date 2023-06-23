@@ -34,7 +34,7 @@ img {
 .hero-section_mobile {
   display: flex;
   margin: 3vw;
-  gap: 1rem;
+  gap: 0.7rem;
 }
 
 .hero-image {
@@ -63,46 +63,12 @@ img {
   flex-direction: column;
 }
 
-.product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  /* width: clamp(260px, 40%, 290px); */
-  max-width: 290px;
-  min-width: 150px;
-}
-.product-card > p {
-  width: 18ch;
-  margin-top: 2rem;
-  margin-left: 1.5rem;
-}
-
-.product-card > .price {
-  margin-top: 0.6rem;
-  margin-left: 1.5rem;
-  align-items: center;
-}
-@media screen and (min-width: 550px) {
-  .product-card > p {
-    width: fit-content;
-    margin-top: 0;
-    margin-left: 0;
-  }
-
-  .product-card > .price {
-    margin-top: 0;
-    margin-left: 0;
-  }
-}
-
 .category-select {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
 }
 .category-select > span {
   border-bottom: 2px solid rgba(0, 0, 0, 0);
@@ -138,7 +104,7 @@ img {
 .new-arrivals_sec,
 .contact-us_sec,
 .faqs_sec {
-  padding: 0 10vw;
+  padding: 0 7vw;
 }
 
 @media screen and (width< 480px) {
@@ -147,4 +113,26 @@ img {
   .faqs_sec {
     padding: 0 1vw;
   }
+}
+
+.loading-div {
+  background-color: #ccc;
+  animation: loadingAnimation 2s infinite;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    background-color: #9c9c9c;
+  }
+  50% {
+    background-color: #5e5e5e;
+  }
+  100% {
+    background-color: #9c9c9c;
+  }
+}
+
+/* Add the following CSS rule to stop the animation after a certain duration */
+.loading-div.stop {
+  animation: none;
 }

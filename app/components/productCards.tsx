@@ -1,6 +1,7 @@
 import React from "react";
 import productImage from "../assets/images/productcard.png";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
+import Image from "../components/Image";
 
 interface ProductCard1Props {
   name: string;
@@ -11,24 +12,12 @@ interface ProductCard1Props {
 
 export const ProductCard1: React.FC<ProductCard1Props> = (props) => {
   return (
-    <div className="product-card">
-      {/* <div className="product-card_img"> */}
-      <Image src={props.image || productImage} alt="" />
-      {/* </div> */}
-      <p>{props.name}</p>
-      <div className="price">
-        <span
-          style={{
-            fontSize: "1.05rem",
-            fontWeight: "800",
-            marginRight: "13px",
-          }}
-        >
-          {`GHS${props.price}`}
-        </span>
-        <span style={{ fontSize: "0.8rem", textDecoration: "line-through" }}>
-          {`GHS${props.discount}`}
-        </span>
+    <div className="flex flex-col">
+      <Image src={props.image} ar="16/14" className={"w-40 md:w-56"} />
+      <p className="ml-2 mt-2 text-sm md:text-base">{props.name}</p>
+      <div className="ml-2 mt-3  flex items-center">
+        <span className="mr-3 font-extrabold">{`GH₵ ${props.price}`}</span>
+        <span className="line-through text-xs ">{`GH₵ ${props.discount}`}</span>
       </div>
     </div>
   );
