@@ -14,6 +14,7 @@ module.exports = {
       },
       screens:{
         xs: '367px',
+        heightbp: {'raw': '(max-height: 790px)'},
       },
     },
   },

@@ -64,7 +64,7 @@ const Sidemenu = () => {
                 </div>
             </div>
         </div>
-        <div className=" sm:flex sm:justify-around">
+        <div className=" heightbp:flex heightbp:justify-around">
             
         <div className="sidemenu-section">
             <p className='section-title'>shop categories</p>

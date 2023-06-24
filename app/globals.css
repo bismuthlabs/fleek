@@ -75,7 +75,7 @@ body {
   @apply text-white text-base capitalize leading-[19.36px]
  }
  .sidemenu-section{
-  @apply mt-[73px] before:content-normal before:absolute relative before:-top-[23px] before:left-0 before:bg-white before:w-full before:h-[0.5px]
+  @apply mt-[73px]  before:content-normal before:absolute relative before:-top-[23px] before:left-0 before:bg-white before:w-full before:h-[0.5px]
  }
  .section-title{
   @apply  uppercase text-sm leading-[16.94px] font-medium text-white
