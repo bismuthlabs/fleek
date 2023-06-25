@@ -32,11 +32,11 @@ const Sidemenu = () => {
                 name: 'about us',
             },
             {
-                id: 1,
+                id: 2,
                 name: 'faq',
             },
             {
-                id: 1,
+                id: 3,
                 name: 'contact us',
             },
         ]
