@@ -601,11 +601,14 @@ export default function Header() {
         {/* Search component */}
         {showSearch ? (
           <div
-            className="whats_overlay fixed w-screen bg-black h-screen z-10  bg-opacity-40 overflow-auto"
+            className="whats_overlay fixed w-screen bg-black h-screen z-10 bg-opacity-40 overflow-auto"
             onClick={(e) => {
-              e.target.className.split(" ")[0] === "whats_overlay"
-                ? setShowSearch(false)
-                : null;
+              if (
+                e.target.classList.contains("whats_overlay") ||  // using the `classList` property instead of `className`.
+                e.target.parentElement.classList.contains("whats_overlay")
+              ) {
+                setShowSearch(false);
+              }
             }}
           >
             <div className="bg-white bg-opacity-100">
