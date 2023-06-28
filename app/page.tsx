@@ -1,12 +1,25 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { HeroSection } from "./components/heroSection";
-import { ProductCard1 } from "./components/productCards";
-import { catMen, catWomen, faqs, newArrivals } from "./dummyData";
+import { ProductCard, ProductCard1 } from "./components/productCards";
+import {
+  catMen,
+  catWomen,
+  faqs,
+  newArrivalsa,
+  dummyTrending,
+} from "./dummyData";
 import FAQ from "./components/FAQ";
 import contactus from "./assets/images/contactus.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  getAllProducts,
+  getDocumentsSortedByDateAdded,
+} from "./firebase/firestore/getData";
+import { DocumentData } from "firebase/firestore";
+import { filterByGender } from "@/utils/productFuctions";
+
 interface Category {
   name: string;
   price: number;
@@ -14,18 +27,56 @@ interface Category {
   image: string;
 }
 
+interface ProductType {
+  image: string;
+  name: string;
+  originalPrice: number;
+  reducedPrice: number;
+  views: number;
+}
+interface ProductsType {
+  id: number | string;
+  data: DocumentData;
+}
+
 const Home = () => {
-  const [category, setCategory] = useState<string>("women");
-  const [currentCategory, setCurrentCategory] = useState<Category[]>(catWomen);
-  const [showSearch, setShowSearch] = useState(false);
+  const [trending, setTrending] = useState<ProductsType[] | undefined>(
+    dummyTrending
+  );
+  const [trendingCat, setTrendingCat] = useState("f");
+  const [newArrivals, setNewArrivals] = useState<ProductsType[]>(dummyTrending);
+
+  useEffect(() => {
+    const fetchProductData = async () => {
+      try {
+        setTrending(dummyTrending); //It takes time to fetch the data so this is just to show the skeleton loader
+        const data = await getAllProducts();
+        if (data?.length === 0) return; //network issues usually results to an empty data being sent over the client
+
+        if (trendingCat == "f") {
+          setTrending(filterByGender(data, "f")?.slice(0, 8));
+        }
+
+        if (trendingCat === "m") {
+          setTrending(filterByGender(data, "m")?.slice(0, 8));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchProductData();
+  }, [trendingCat]);
+
+  useEffect(() => {
+    const getSortedProducts = async () => {
+      const data = await getDocumentsSortedByDateAdded(4);
+      setNewArrivals(data);
+    };
+    getSortedProducts();
+  }, []);
 
   return (
     <main>
-      {showSearch && (
-        <div className="fixed top-0 left-0 z-10 w-full  bg-black bg-opacity-40 h-screen overflow-hidden">
-          search
-        </div>
-      )}
       <HeroSection />
       <section className="flex flex-col content-center items-center overflow-hidden mt-12 md:mt-16 lg:mt-20">
         <h2 className="text-base  tracking-wide  md:text-lg lg:text-2xl text-black  font-semibold mb-6 md:mb-8 lg:mb-10 ">
@@ -34,56 +85,43 @@ const Home = () => {
         <div className="category-select mb-6 md:mb-12 lg:mb-12">
           <span
             className={
-              category == "women"
+              trendingCat == "f"
                 ? "active text-lg md:text-xl lg:text-2xl"
                 : "text-lg md:text-xl lg:text-2xl"
             }
             onClick={() => {
-              setCategory("women");
-              setCurrentCategory(catWomen);
+              setTrendingCat("f");
             }}
           >
             Women
           </span>
           <span
             className={
-              category == "men"
+              trendingCat == "m"
                 ? "active text-lg md:text-xl lg:text-2xl"
                 : "text-lg md:text-xl lg:text-2xl"
             }
             onClick={() => {
-              setCategory("men");
-              setCurrentCategory(catMen);
+              setTrendingCat("m");
             }}
           >
             Men
           </span>
         </div>
         <div className="category-slideshow ">
-          {currentCategory.map((item, index) => (
-            <ProductCard1
-              key={index}
-              name={item.name}
-              price={item.price}
-              discount={item.discount}
-              image={item.image}
-            />
+          {trending?.map((item) => (
+            <ProductCard key={item.id} data={item.data} />
           ))}
         </div>
       </section>
+
       <section className="new-arrivals_sec flex flex-col items-center mt-12 md:mt-18 lg:mt-24 pt-4">
         <h2 className="text-base  tracking-wide  md:text-lg lg:text-2xl text-black  font-semibold mb-6 md:mb-8 lg:mb-10 ">
           NEW ARRIVALS
         </h2>
         <div className=" grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 w-full  ">
-          {newArrivals.map((item, index) => (
-            <ProductCard1
-              name={item.name}
-              key={index}
-              price={item.price}
-              discount={item.discount}
-              image={item.image}
-            />
+          {newArrivals.map((item) => (
+            <ProductCard key={`new_${item.id}`} data={item.data} />
           ))}
         </div>
         <button className="text-white  text-lg  md:text-xl bg-black hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-500 px-5 py-2 mt-8">
