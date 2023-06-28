@@ -8,7 +8,7 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-i;
+
 import Image from "./Image";
 import { getAllProducts } from "../firebase/firestore/getData";
 import { filterItemsBySubtext } from "@/utils/productFuctions";
