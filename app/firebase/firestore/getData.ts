@@ -1,5 +1,5 @@
 import app from "../config";
-import { getFirestore, doc, getDoc, collection, getDocs,  query, orderBy, limit,  } from "firebase/firestore";
+import { getFirestore, doc, getDoc, collection, getDocs,  query, orderBy, limit, where, startAt, endAt } from "firebase/firestore";
 
 const db = getFirestore(app);
 
@@ -7,13 +7,6 @@ const db = getFirestore(app);
 The data collected is plain and not sorted or filtered
 The idea it to get all data and wherever sorting or filtering is required, it is done with client side code
 */
-
-export const  getCities = async ()=> {
-  const citiesCol = collection(db, 'products');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
-}
 
 export const  getAllProducts = async() =>{
   let documentsData;
@@ -76,3 +69,28 @@ export const  getDocumentsSortedByDateAdded = async (lim:number) =>{
 
   return sortedDocuments;
 }
+
+
+
+/*This function is a search query that accepts the search term and searches the product collection by title */
+
+export const searchProduct = async (searchQuery:string) => {
+  const collectionRef = collection(db, 'products');
+  
+  // const q = query(collectionRef, where('name', '>=', searchQuery), limit(4));
+  const q = query(
+    collectionRef,
+    orderBy('name'),
+    startAt(searchQuery),
+    endAt(searchQuery + '\uf8ff'),
+    limit(4)
+  );
+  const snapshot = await getDocs(q);
+  
+  const documents = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+  
+  return documents;
+};
