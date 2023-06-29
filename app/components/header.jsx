@@ -54,41 +54,14 @@ const navigation = {
       ],
       sections: [
         {
-          id: "clothing",
-          name: "Clothing",
+          id: "womencategories",
+          name: "Shop categories",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Dresses", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Denim", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
-          ],
-        },
-        {
-          id: "accessories",
-          name: "Accessories",
-          items: [
-            { name: "Watches", href: "#" },
-            { name: "Wallets", href: "#" },
-            { name: "Bags", href: "#" },
-            { name: "Sunglasses", href: "#" },
-            { name: "Hats", href: "#" },
-            { name: "Belts", href: "#" },
-          ],
-        },
-        {
-          id: "brands",
-          name: "Brands",
-          items: [
-            { name: "Full Nelson", href: "#" },
-            { name: "My Way", href: "#" },
-            { name: "Re-Arranged", href: "#" },
-            { name: "Counterfeit", href: "#" },
-            { name: "Significant Other", href: "#" },
+            { name: "Heels", href: "#" },
+            { name: "Slipper Heels", href: "#" },
+            { name: "Crocs", href: "#" },
+            { name: "Flats", href: "#" },
+            { name: "Sandals", href: "#" },
           ],
         },
       ],
@@ -116,45 +89,33 @@ const navigation = {
       ],
       sections: [
         {
-          id: "clothing",
-          name: "Clothing",
+          id: "mencategories",
+          name: "Shop categories",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
-          ],
-        },
-        {
-          id: "accessories",
-          name: "Accessories",
-          items: [
-            { name: "Watches", href: "#" },
-            { name: "Wallets", href: "#" },
-            { name: "Bags", href: "#" },
-            { name: "Sunglasses", href: "#" },
-            { name: "Hats", href: "#" },
-            { name: "Belts", href: "#" },
-          ],
-        },
-        {
-          id: "brands",
-          name: "Brands",
-          items: [
-            { name: "Re-Arranged", href: "#" },
-            { name: "Counterfeit", href: "#" },
-            { name: "Full Nelson", href: "#" },
-            { name: "My Way", href: "#" },
+            { name: "Loafers", href: "#" },
+            { name: "Sandals", href: "#" },
+            { name: "Slippers", href: "#" },
+            { name: "Sneakers", href: "#" },
+            { name: "Crocs", href: "#" },
+            { name: "Brogues", href: "#" },
           ],
         },
       ],
     },
   ],
   pages: [
-    { name: "Discover", href: "#" },
+    { 
+      id: "pages",
+      name: "Discover", href: "#",
+      items: [
+        {
+          name: "About us",
+          name: "FAQ",
+          name: "Contact us",
+        }
+      ]
+
+    },
   ],
 };
 
@@ -245,7 +206,7 @@ export default function Header() {
                             className={({ selected }) =>
                               classNames(
                                 selected
-                                  ? "border-indigo-600 text-indigo-600"
+                                  ? "border-black text-black"
                                   : "border-transparent text-gray-900",
                                 "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                               )
@@ -295,7 +256,7 @@ export default function Header() {
                             <div key={section.name}>
                               <p
                                 id={`${category.id}-${section.id}-heading-mobile`}
-                                className="font-medium text-gray-900"
+                                className="font-medium text-gray-900 uppercase"
                               >
                                 {section.name}
                               </p>
@@ -308,7 +269,7 @@ export default function Header() {
                                   <li key={item.name} className="flow-root">
                                     <a
                                       href={item.href}
-                                      className="-m-2 block p-2 text-gray-500"
+                                      className="-m-2 block p-2 text-gray-900"
                                     >
                                       {item.name}
                                     </a>
@@ -321,16 +282,45 @@ export default function Header() {
                       ))}
                     </Tab.Panels>
                   </Tab.Group>
-
+                  {/* DISCOVER DISCOVER DISCOVER DISCOVER */}
                   <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                     {navigation.pages.map((page) => (
                       <div key={page.name} className="flow-root">
                         <a
                           href={page.href}
-                          className="-m-2 block p-2 font-medium text-gray-900"
+                          className="-m-2 block text-lg uppercase p-2 font-medium text-gray-900"
                         >
-                          {page.name}
+                          {'Discover'}
                         </a>
+                        <ul
+                            role="list"
+                            className="mt-6 flex flex-col space-y-6"
+                          >
+                              <li className="flow-root">
+                                <a
+                                  href={'#'}
+                                  className="-m-2 block p-2 text-gray-900"
+                                >
+                                  {'About us'}
+                                </a>
+                              </li>
+                              <li className="flow-root">
+                                <a
+                                  href={'#'}
+                                  className="-m-2 block p-2 text-gray-900"
+                                >
+                                  {'Faq'}
+                                </a>
+                              </li>
+                              <li className="flow-root">
+                                <a
+                                  href={'#'}
+                                  className="-m-2 block p-2 text-gray-900"
+                                >
+                                  {'Contact us'}
+                                </a>
+                              </li>
+                          </ul>
                       </div>
                     ))}
                   </div>
@@ -442,24 +432,24 @@ export default function Header() {
                                           </div>
                                         ))}
                                       </div>
-                                      <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                                      <div className="row-start-1 grid gap-x-8 gap-y-10 text-sm">
                                         {category.sections.map((section) => (
                                           <div key={section.name}>
                                             <p
                                               id={`${section.name}-heading`}
-                                              className="font-medium text-gray-900"
+                                              className="font-medium text-gray-900 uppercase"
                                             >
                                               {section.name}
                                             </p>
                                             <ul
                                               role="list"
                                               aria-labelledby={`${section.name}-heading`}
-                                              className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                              className="mt-6 flex gap-x-3 gap-y-2 flex-wrap items-center"
                                             >
                                               {section.items.map((item) => (
                                                 <li
                                                   key={item.name}
-                                                  className="flex"
+                                                  className="mr-"
                                                 >
                                                   <a
                                                     href={item.href}
