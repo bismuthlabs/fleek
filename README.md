@@ -1,3 +1,3 @@
-# Divquan
+# b4mainmerge
 
-Being a programmer is like being a magician, but instead of pulling rabbits out of hats, you pull bugs out of code. Embrace the magic and keep coding!.
+Before we merge various branches to the main, we test all combined branches here.
