@@ -88,7 +88,7 @@ export const ImageWithOverlay = ({
 }) => {
   return (
     <>
-      <div className="hero-image">
+      <div className="hero-image md:-z-10">
         <Image src={items.img} alt="" />
         <div className="hero-tag ">
           <h1 className="mb-4 text-2xl font-extrabold leading-none tracking-tight  md:text-6xl lg:text-7xl text-white">

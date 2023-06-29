@@ -154,8 +154,7 @@ const navigation = {
     },
   ],
   pages: [
-    { name: "Company", href: "#" },
-    { name: "Stores", href: "#" },
+    { name: "Discover", href: "#" },
   ],
 };
 
@@ -341,6 +340,8 @@ export default function Header() {
           </Dialog>
         </Transition.Root>
 
+
+          {/* Desktop navigation */}
         <header className="relative bg-white">
           <p className="flex h-10 items-center justify-center bg-black px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
             Get free delivery on orders over GHc100
@@ -351,7 +352,7 @@ export default function Header() {
             className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
           >
             <div className="border-b border-gray-200">
-              <div className="flex h-16 items-center">
+              <div className="flex h-16 items-center justify-between">
                 <button
                   type="button"
                   className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
@@ -363,19 +364,16 @@ export default function Header() {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                  <a href="#">
+                  <a href="/">
                     <span className="sr-only">Your Company</span>
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                      alt=""
-                    />
+                    <span>Logo</span>
                   </a>
                 </div>
 
                 {/* Flyout menus */}
                 <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                   <div className="flex h-full space-x-8">
+
                     {navigation.categories.map((category) => (
                       <Popover key={category.name} className="flex">
                         {({ open }) => (
@@ -384,9 +382,9 @@ export default function Header() {
                               <Popover.Button
                                 className={classNames(
                                   open
-                                    ? "border-indigo-600 text-indigo-600"
-                                    : "border-transparent text-gray-700 hover:text-gray-800",
-                                  "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                    ? "border-black text-gray-700"
+                                    : "border-transparent  text-gray-700 hover:text-gray-800",
+                                  "relative z-10 -mb-px flex items-center uppercase border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
                                 )}
                               >
                                 {category.name}
@@ -484,12 +482,12 @@ export default function Header() {
                         )}
                       </Popover>
                     ))}
-
+                    {/* DISCOVER DISCOVER DISCOVER DISCOVER */}
                     {navigation.pages.map((page) => (
                       <a
                         key={page.name}
                         href={page.href}
-                        className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                        className="flex items-center uppercase text-sm font-medium text-gray-700 hover:text-gray-800"
                       >
                         {page.name}
                       </a>
@@ -497,39 +495,7 @@ export default function Header() {
                   </div>
                 </Popover.Group>
 
-                <div className="ml-auto flex items-center">
-                  {/* <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      Sign in
-                    </a>
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      Create account
-                    </a>
-                  </div>
-
-                  <div className="hidden lg:ml-8 lg:flex">
-                    <a
-                      href="#"
-                      className="flex items-center text-gray-700 hover:text-gray-800"
-                    >
-                      <img
-                        src="https://tailwindui.com/img/flags/flag-canada.svg"
-                        alt=""
-                        className="block h-auto w-5 flex-shrink-0"
-                      />
-                      <span className="ml-3 block text-sm font-medium">
-                        CAD
-                      </span>
-                      <span className="sr-only">, change currency</span>
-                    </a>
-                  </div> */}
+                <div className="flex items-center">
 
                   {/* Search */}
                   <div className="flex lg:ml-6">
@@ -539,7 +505,7 @@ export default function Header() {
                     >
                       <span className="sr-only">Search</span>
                       <MagnifyingGlassIcon
-                        className="h-6 w-6"
+                        className="h-5 w-5"
                         aria-hidden="true"
                         onClick={handleToggleSearch}
                       />
@@ -550,11 +516,11 @@ export default function Header() {
                   <div className="ml-4 flow-root lg:ml-6">
                     <a href="#" className="group -m-2 flex items-center p-2">
                       <ShoppingBagIcon
-                        className="h-6 w-6 flex-shrink-0 text-black group-hover:text-gray-500"
+                        className="h-5 w-5 flex-shrink-0 text-black group-hover:text-gray-500"
                         aria-hidden="true"
                       />
                       <span className="ml-2 text-sm font-medium text-black group-hover:text-gray-800">
-                        0
+                        1
                       </span>
                       <span className="sr-only">items in cart, view bag</span>
                     </a>
