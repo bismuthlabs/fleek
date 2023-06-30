@@ -1,34 +1,18 @@
 "use client";
 
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-
-  Source: https://tailwindui.com/components/preview
-*/
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
-  FaceSmileIcon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { forEachLeadingCommentRange } from "typescript";
-import { catMen, searchItems } from "../dummyData";
-import { ProductCard1 } from "./productCards";
-import Image from "../components/Image";
+i;
+import Image from "./Image";
+import { getAllProducts } from "../firebase/firestore/getData";
+import { filterItemsBySubtext } from "@/utils/productFuctions";
+
 const navigation = {
   categories: [
     {
@@ -124,14 +108,16 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const [allProducts, setAllProducts] = useState([]);
   const [open, setOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [resultLength, setResultLength] = useState(0);
 
-  const handleChange = (e) => {
-    setSearchValue(e.target.value);
+  const handleToggleSearch = () => {
+    setShowSearch((prevState) => !prevState);
   };
-
   useEffect(() => {
     const handleBodyOverflow = () => {
       if (showSearch) {
@@ -140,17 +126,30 @@ export default function Header() {
         document.body.classList.remove("overflow-hidden");
       }
     };
-
     handleBodyOverflow();
-
-    // return () => {
-    //   document.body.classList.remove("overflow-hidden");
-    // };
   }, [showSearch]);
 
-  const handleToggleSearch = () => {
-    setShowSearch((prevState) => !prevState);
-  };
+  /*The logic for the search lies in the two useEffects below
+  In the first useEffect, we fetch all the products from the API and set the state
+  In the second useEffect, we filter the products based on the search term and set the state
+  */
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await getAllProducts();
+      setAllProducts(data);
+    };
+    getProducts();
+  }, []);
+  useEffect(() => {
+    const handleSearch = () => {
+      let results;
+      console.log(`searchterm: ${searchTerm}`);
+      results = filterItemsBySubtext(allProducts, searchTerm);
+      setResultLength(results.length);
+      setSearchResults(results.slice(0, 4));
+    };
+    handleSearch();
+  }, [searchTerm]);
 
   return (
     <>
@@ -527,7 +526,7 @@ export default function Header() {
             className="whats_overlay fixed w-screen bg-black h-screen z-10 bg-opacity-40 overflow-auto"
             onClick={(e) => {
               if (
-                e.target.classList.contains("whats_overlay") ||  // using the `classList` property instead of `className`.
+                e.target.classList.contains("whats_overlay") || // using the `classList` property instead of `className`.
                 e.target.parentElement.classList.contains("whats_overlay")
               ) {
                 setShowSearch(false);
@@ -543,8 +542,8 @@ export default function Header() {
                   type="text"
                   className="flex-grow outline-none focus:ring-0 "
                   placeholder="Search"
-                  value={searchValue}
-                  onChange={handleChange}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <button
                   className="ml-2 cursor-pointer"
@@ -556,30 +555,31 @@ export default function Header() {
 
               <div>
                 <div className="w-full flex justify-between px-3 pt-3">
-                  <span className="text-xs text-gray-700">20 results</span>
+                  <span className="text-xs text-gray-700">
+                    {resultLength} results
+                  </span>
                   <a href="/#" className="text-xs text-gray-700">
                     See all
                   </a>
                 </div>
                 <hr />
                 <div className="flex flex-col md:flex-row ">
-                  {searchItems.map((item, index) => {
+                  {searchResults.map(({ id, data }) => {
+                    const { name, image, originalPrice, reducedPrice } = data;
                     return (
                       <div
                         className="flex flex-row md:flex-col w-full md:w-fit items-center p-3 gap-3 hover:grayscale border-transparent border-b-2 hover:border-gray-100 cursor-pointer"
-                        key={index}
+                        key={`search_${id}`}
                       >
-                        <Image
-                          className="w-16 md:w-24"
-                          ar="1"
-                          src="https://cdn.shopify.com/s/files/1/0603/3031/1875/products/main-square_5a88526d-957d-45db-8873-dbdb81e4d5f7_540x.jpg?v=1661770285"
-                        />
+                        <Image className="w-16 md:w-24" ar="1" src={image} />
                         <div className="flex flex-col ">
-                          <h3 className="font-bold ">Nick Future Air</h3>
+                          <h3 className="font-bold ">{name}</h3>
                           <div>
-                            <span className="text-base">$400</span>
+                            <span className="text-base">
+                              GH₵ {reducedPrice}
+                            </span>
                             <span className="ml-4 text-xs line-through font-extralight text-gray-600">
-                              $400
+                              GH₵{originalPrice}
                             </span>
                           </div>
                         </div>
