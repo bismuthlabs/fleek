@@ -37,8 +37,8 @@ export const ProductCard1: React.FC<ProductCard1Props> = (props) => {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   return (
-    <div className="flex flex-col">
-      <Image src={data.image} ar="16/14" className={"w-40 md:w-56"} />
+    <div className="flex flex-col border border-black">
+      <Image src={data.image} ar="16/14" className={"border border-red-400 w-40 md:w-56"} />
       <p className="ml-2 mt-2 text-sm md:text-base">{data.name}</p>
       <div className="ml-2 mt-3  flex items-center">
         <span className="mr-3 font-extrabold">{`GH₵ ${data.reducedPrice}`}</span>

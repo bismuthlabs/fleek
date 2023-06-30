@@ -8,7 +8,6 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-i;
 import Image from "./Image";
 import { getAllProducts } from "../firebase/firestore/getData";
 import { filterItemsBySubtext } from "@/utils/productFuctions";
@@ -520,7 +519,7 @@ export default function Header() {
           </nav>
         </header>
 
-        {/* Search component */}
+        {/* SEARCH SEARCH SEARCH */}
         {showSearch ? (
           <div
             className="whats_overlay fixed w-screen bg-black h-screen z-10 bg-opacity-40 overflow-auto"
