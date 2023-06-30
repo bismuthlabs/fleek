@@ -119,9 +119,11 @@ const Home = () => {
         <h2 className="text-base  tracking-wide  md:text-lg lg:text-2xl text-black  font-semibold mb-6 md:mb-8 lg:mb-10 ">
           NEW ARRIVALS
         </h2>
+        {/* <div className="grid gap-4 md:grid-cols-3 sm:grid-cols-2  "> */}
+
         <div className=" grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 w-full  ">
           {newArrivals.map((item) => (
-            <ProductCard key={`new_${item.id}`} data={item.data} />
+            <ProductCard1 key={`new_${item.id}`} data={item.data} />
           ))}
         </div>
         <button className="text-white  text-lg  md:text-xl bg-black hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-500 px-5 py-2 mt-8">
