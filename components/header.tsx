@@ -174,7 +174,7 @@ export function Header() {
                   <NavigationMenuItem>
                     <Link href="/docs" legacyBehavior passHref>
                       <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Documentation
+                        Discover
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
