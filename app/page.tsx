@@ -77,7 +77,7 @@ const Home = () => {
 
   return (
     <main>
-      <HeroSection />
+      {/* <HeroSection /> */}
       <section className="flex flex-col content-center items-center overflow-hidden mt-12 md:mt-16 lg:mt-20">
         <h2 className="text-base  tracking-wide  md:text-lg lg:text-2xl text-black  font-semibold mb-6 md:mb-8 lg:mb-10 ">
           TRENDING

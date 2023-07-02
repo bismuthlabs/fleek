@@ -39,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
 
 export const ProductCard1: React.FC<ProductCardProps> = ({ data }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-between ">
       <div className=" ">
         <Image src={data.image} ar="16/14" className={"w-full"} />
         <p className="ml-2 mt-2 text-sm md:text-base">{data.name}</p>

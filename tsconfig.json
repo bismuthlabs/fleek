@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx", "app/layout.tsx", "app/products/men/page.jsx", "app/components/header.jsx", "app/dummyData.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx", "app/layout.tsx", "app/products/men/page.jsx", "components/header.jsx", "app/dummyData.js"],
   "exclude": ["node_modules"]
 }

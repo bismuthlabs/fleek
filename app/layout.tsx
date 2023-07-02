@@ -1,7 +1,8 @@
-import './globals.css'
-import Header from './components/header'
+import './styles/globals.css';
+// import Header from '../components/header'
 import Footer from './components/footer'
 import { Poppins } from 'next/font/google'
+import { Header } from '@/components/header';
 
 const poppins = Poppins({
   subsets: ['latin'],
