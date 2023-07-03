@@ -182,7 +182,6 @@ export default function Header() {
   useEffect(() => {
     const handleSearch = () => {
       let results;
-      console.log(`searchterm: ${searchTerm}`);
       results = filterItemsBySubtext(allProducts, searchTerm);
       setResultLength(results.length);
       setSearchResults(results.slice(0, 4));
