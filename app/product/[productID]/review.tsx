@@ -26,7 +26,7 @@ const Review: React.FC<ReviewProps> = ({
         <h3 className="text-lg font-semibold mb-2">{author}</h3>
       </div>
       <div>
-        <div className="flex items-center mb-2">
+        <div className="flex items-center w-full mb-2">
           <StarRating rating={rating} />
           <span className="ml-2 text-gray-600">{rating}</span>
         </div>
@@ -41,8 +41,8 @@ type StarRatingProps = {
 };
 
 const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 !== 0;
+  const fullStars = Math.floor(rating); //rounds down to the nearest integer
+  const hasHalfStar = rating % 1 !== 0; //checks if the rating is a whole number
 
   const stars = Array.from({ length: 5 }, (_, index) => {
     const starClass =
