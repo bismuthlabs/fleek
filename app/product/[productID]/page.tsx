@@ -12,18 +12,20 @@ import { Image as TxImage } from "../../components/Image";
 
 const page = () => {
   const pathname = usePathname()?.split("/")[2];
-  const [product, setProduct] = useState<DocumentData | null>({});
+  const [product, setProduct] = useState<DocumentData | null>({
+    name: "",
+    // image: "",
+    originalPrice: "",
+    reducedPrice: "",
+    description: "",
+    reviews: [],
+  });
+
   interface Color {
     name: string;
     value: string;
   }
 
-  const colors: Color[] = [
-    { name: "Red", value: "#FF0000" },
-    { name: "Green", value: "#00FF00" },
-    { name: "Blue", value: "#0000FF" },
-    // Add more colors here if needed
-  ];
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,14 +60,16 @@ const page = () => {
               height={384}
             />
           </div> */}
-          <div className="overflow-hidden relative h-80 ">
+          <div className="overflow-hidden relative h-80 md:h-full md:overflow-auto md:relative md:80 ">
             <TxImage
               src={product?.image}
-              className={"w-full h-34 absolute bottom-0"}
+              className={
+                "w-full h-34 absolute md:h-full md:static bottom-0 md:flex-1"
+              }
               ar={"2/3"}
             />
           </div>
-          <div className="">
+          <div className="md:flex-1">
             <div className="flex flex-col">
               <div className="flex flex-col">
                 <h1 className="text-3xl">{product?.name}</h1>
