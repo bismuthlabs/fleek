@@ -110,7 +110,9 @@ const Home = () => {
         </div>
         <div className="category-slideshow ">
           {trending?.map((item) => (
-            <ProductCard key={item.id} data={item.data} />
+            <Link href={`/product/${item.id}`}>
+              <ProductCard key={item.id} data={item.data} />
+            </Link>
           ))}
         </div>
       </section>
@@ -123,7 +125,9 @@ const Home = () => {
 
         <div className=" grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 w-full  ">
           {newArrivals.map((item) => (
-            <ProductCard1 key={`new_${item.id}`} data={item.data} />
+            <Link href={`/product/${item.id}`}>
+              <ProductCard1 key={`new_${item.id}`} data={item.data} />
+            </Link>
           ))}
         </div>
         <button className="text-white  text-lg  md:text-xl bg-black hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-500 px-5 py-2 mt-8">

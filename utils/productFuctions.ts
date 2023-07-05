@@ -33,14 +33,13 @@ export const  filterByGender = (products:Product[] | undefined, gender:string) =
     return items.filter((item) => item.data.name.toLowerCase().includes(subtext.toLowerCase()));
   }
   
-  // Usage example
+/*  // Usage example
   const items: Item[] = [
     // Array items here
   ];
   
   const filteredItems = filterItemsBySubtext(items, "Leather");
-  console.log(filteredItems);
   
   
   
-  
+  */

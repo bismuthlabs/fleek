@@ -38,7 +38,6 @@ export const getProduct = async (id:string) => {
 
     if (docSnapshot.exists()) {
       const documentData = docSnapshot.data();
-      console.log("Document data:", documentData);
       return documentData;
     } else {
       console.log("Document does not exist");
