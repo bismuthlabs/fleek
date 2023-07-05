@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 //accepts the width prop, the src prop, and the aspect ratio prop
-
-const Image = ({ className, src, ar }) => {
+interface ImagePropsType {
+  className: string;
+  src: string;
+  ar?: string;
+}
+export const Image = ({ className, src, ar }: ImagePropsType) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showImage, setShowImage] = useState("none");
 
