@@ -90,8 +90,8 @@ export function Header() {
       <header className="border-b">
         {/* DESKTOP DESKTOP DESKTOP DESKTOP */}
         {/* Banner */}
-        <div className="flex justify-center bg-black">
-          <small className="text-sm text-white my-3 font-medium leading-none">Announcement bar</small>
+        <div className="flex justify-center bg-black py-2">
+            <span className="text-sm text-white">Promo: Get 30% discount on first order</span>
         </div>
         <div className="w-[90%] m-auto hidden md:block">
           <div className="flex items-center justify-between">
@@ -190,25 +190,37 @@ export function Header() {
                   <NavigationMenuItem>
                     <Link href="/docs" legacyBehavior passHref>
                       <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Discover
+                        <span className="uppercase">Discover</span>
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
-            <div>
               {/* Search & Bag */}
-              <h1>Search</h1>
-              <h1>Bag</h1>
+            <div className="flex items-center gap-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+              </div>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
         {/* MOBILE MOBILE MOBILE MOBILE */}
-        <div className="flex items-center justify-between gap-2 md:hidden">
+        <div className="flex items-center justify-between mx-3 gap-2 md:hidden">
           <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost">Menu</Button>
+                <Button variant="ghost">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                </Button>
               </SheetTrigger>
               <SheetContent side={'left'}>
                 <Tabs defaultValue="men" className="w-full mt-12">
@@ -338,84 +350,21 @@ export function Header() {
               </SheetContent>
             </Sheet>
             <div>Logo</div>
-            <div className="flex gap-4">
-              <div>Search</div>
-              <div>Bag</div>
+            {/* SEARCH SEARCH SEARCH */}
+            <div className="flex items-center gap-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+              </div>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+              </div>
             </div>
         </div>
       </header>
-      
-        {/* SEARCH SEARCH SEARCH */}
-        {/* {showSearch ? (
-          <div
-            className="whats_overlay fixed w-screen bg-black h-screen z-10 bg-opacity-40 overflow-auto"
-            onClick={(e) => {
-              if (
-                e.target.classList.contains("whats_overlay") || // using the `classList` property instead of `className`.
-                e.target.parentElement.classList.contains("whats_overlay")
-              ) {
-                setShowSearch(false);
-              }
-            }}
-          >
-            <div className="bg-white bg-opacity-100">
-              <div className="flex items-center p-3">
-                <div className="mr-2">
-                  <MagnifyingGlassIcon className="h-5 w-5 text-gray-500" />
-                </div>
-                <input
-                  type="text"
-                  className="flex-grow outline-none focus:ring-0 "
-                  placeholder="Search"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button
-                  className="ml-2 cursor-pointer"
-                  onClick={handleToggleSearch}
-                >
-                  <XMarkIcon className="h-7 w-7 text-gray-500" />
-                </button>
-              </div>
-
-              <div>
-                <div className="w-full flex justify-between px-3 pt-3">
-                  <span className="text-xs text-gray-700">
-                    {resultLength} results
-                  </span>
-                  <a href="/#" className="text-xs text-gray-700">
-                    See all
-                  </a>
-                </div>
-                <hr />
-                <div className="flex flex-col md:flex-row ">
-                  {searchResults.map(({ id, data }) => {
-                    const { name, image, originalPrice, reducedPrice } = data;
-                    return (
-                      <div
-                        className="flex flex-row md:flex-col w-full md:w-fit items-center p-3 gap-3 hover:grayscale border-transparent border-b-2 hover:border-gray-100 cursor-pointer"
-                        key={`search_${id}`}
-                      >
-                        <Image className="w-16 md:w-24" ar="1" src={image} />
-                        <div className="flex flex-col ">
-                          <h3 className="font-bold ">{name}</h3>
-                          <div>
-                            <span className="text-base">
-                              GH₵ {reducedPrice}
-                            </span>
-                            <span className="ml-4 text-xs line-through font-extralight text-gray-600">
-                              GH₵{originalPrice}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : null} */}
     </>
   )
 }
