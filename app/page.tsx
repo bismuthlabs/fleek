@@ -19,6 +19,7 @@ import {
 } from "./firebase/firestore/getData";
 import { DocumentData } from "firebase/firestore";
 import { filterByGender } from "@/utils/productFuctions";
+import { PostCardSkeleton } from "./components/PostCardSkeleton";
 
 interface Category {
   name: string;
@@ -40,16 +41,17 @@ interface ProductsType {
 }
 
 const Home = () => {
-  const [trending, setTrending] = useState<ProductsType[] | undefined>(
-    dummyTrending
-  );
+  const [trending, setTrending] = useState<ProductsType[] | undefined>();
+  const [trendingLoading, setTrendingLoading] = useState(true);
   const [trendingCat, setTrendingCat] = useState("f");
-  const [newArrivals, setNewArrivals] = useState<ProductsType[]>(dummyTrending);
+  const [newArrivals, setNewArrivals] = useState<ProductsType[]>();
+  const [newArrivalsLoading, setNewArrivalsLoading] = useState(true);
+  const someArray = [0, 1, 2, 3, 4];
 
   useEffect(() => {
     const fetchProductData = async () => {
+      setTrendingLoading(true);
       try {
-        setTrending(dummyTrending); //It takes time to fetch the data so this is just to show the skeleton loader
         const data = await getAllProducts();
         if (data?.length === 0) return; //network issues usually results to an empty data being sent over the client
 
@@ -60,6 +62,7 @@ const Home = () => {
         if (trendingCat === "m") {
           setTrending(filterByGender(data, "m")?.slice(0, 8));
         }
+        setTrendingLoading(false);
       } catch (e) {
         console.error(e);
       }
@@ -70,6 +73,8 @@ const Home = () => {
   useEffect(() => {
     const getSortedProducts = async () => {
       const data = await getDocumentsSortedByDateAdded(4);
+      if (data?.length === 0) return;
+      setNewArrivalsLoading(false);
       setNewArrivals(data);
     };
     getSortedProducts();
@@ -109,26 +114,30 @@ const Home = () => {
           </span>
         </div>
         <div className="category-slideshow ">
-          {trending?.map((item) => (
-            <Link href={`/product/${item.id}`}>
-              <ProductCard key={item.id} data={item.data} />
-            </Link>
-          ))}
+          {trendingLoading && someArray.map((_) => <PostCardSkeleton />)}
+          {!trendingLoading &&
+            trending?.map((item) => (
+              <Link href={`/product/${item.id}`}>
+                <ProductCard key={item.id} data={item.data} />
+              </Link>
+            ))}
         </div>
       </section>
 
-      <section className="new-arrivals_sec flex flex-col items-center mt-12 md:mt-18 lg:mt-24 pt-4">
+      <section className="new-arrivals_sec flex flex-col items-center mt-12 md:mt-18 lg:mt-24 pt-4 overflow-x-hidden">
         <h2 className="text-base  tracking-wide  md:text-lg lg:text-2xl text-black  font-semibold mb-6 md:mb-8 lg:mb-10 ">
           NEW ARRIVALS
         </h2>
         {/* <div className="grid gap-4 md:grid-cols-3 sm:grid-cols-2  "> */}
 
         <div className=" grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 w-full  ">
-          {newArrivals.map((item) => (
-            <Link href={`/product/${item.id}`}>
-              <ProductCard1 key={`new_${item.id}`} data={item.data} />
-            </Link>
-          ))}
+          {newArrivalsLoading && someArray.map((_) => <PostCardSkeleton />)}
+          {!newArrivalsLoading &&
+            newArrivals?.map((item) => (
+              <Link href={`/product/${item.id}`}>
+                <ProductCard1 key={`new_${item.id}`} data={item.data} />
+              </Link>
+            ))}
         </div>
         <button className="text-white  text-lg  md:text-xl bg-black hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-500 px-5 py-2 mt-8">
           See all
