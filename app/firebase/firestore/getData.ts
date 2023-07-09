@@ -1,5 +1,5 @@
 import app from "../config";
-import { getFirestore, doc, getDoc, collection, getDocs,  query, orderBy, limit, where, startAt, endAt } from "firebase/firestore";
+import { getFirestore, doc, getDoc, collection, getDocs,  query, orderBy, limit, where, startAt, endAt,  startAfter, getCountFromServer, DocumentData } from "firebase/firestore";
 
 const db = getFirestore(app);
 
@@ -8,7 +8,7 @@ The data collected is plain and not sorted or filtered
 The idea it to get all data and wherever sorting or filtering is required, it is done with client side code
 */
 
-export const  getAllProducts = async() =>{
+export const  getAllProducts = async () =>{
   let documentsData;
   const collectionRef = collection(db, "products"); // Specify the collection from which you want to fetch documents
 
@@ -92,4 +92,36 @@ export const searchProduct = async (searchQuery:string) => {
   }));
   
   return documents;
+};
+
+export const getNumber = async (value:string) => {
+  const collectionRef = collection(db, 'product');
+  const q = query(collectionRef, where('gender', '==', value));
+  
+  try {
+    const querySnapshot = await getDocs(q);
+    const count = querySnapshot.size;
+    console.log('Number of documents:', count);
+    return count;
+  } catch (error) {
+    console.error('Error getting documents:', error);
+    throw error;
+  }
+};
+
+
+export const getProductsByField = async (fieldName:string, fieldValue:string) => {
+  const productsRef = collection(db, "products");
+  const q = query(productsRef, where(fieldName, "==", fieldValue));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    const products:DocumentData = [];
+    querySnapshot.forEach((doc) => {
+      products.push({ id: doc.id, ...doc.data() });
+    });
+    return products;
+  } catch (error) {
+    console.error("Error getting products:", error);
+  }
 };

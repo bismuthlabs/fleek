@@ -24,7 +24,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex h-full flex-col justify-between">
       <div className=" ">
         <Image src={data.image} ar="16/14" className={"w-48 md:w-56"} />
         <p className="ml-2 mt-2 text-sm md:text-base">{data.name}</p>
@@ -39,14 +39,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
 
 export const ProductCard1: React.FC<ProductCardProps> = ({ data }) => {
   return (
-    <div className="flex flex-col justify-between ">
+    <div className="flex flex-col h-full justify-between ">
       <div className=" ">
-        <Image src={data.image} ar="16/14" className={"w-full"} />
-        <p className="ml-2 mt-2 text-sm md:text-base">{data.name}</p>
+        <Image src={data?.image} ar="16/14" className={"w-full"} />
+        <p className="ml-2 mt-2 text-sm md:text-base">{data?.name}</p>
       </div>
       <div className="ml-2 mt-3  flex items-center">
-        <span className="mr-3 font-extrabold">{`GH₵ ${data.reducedPrice}`}</span>
-        <span className="line-through text-xs ">{`GH₵ ${data.originalPrice}`}</span>
+        <span className="mr-3 font-extrabold">{`GH₵ ${data?.reducedPrice}`}</span>
+        <span className="line-through text-xs ">{`GH₵ ${data?.originalPrice}`}</span>
       </div>
     </div>
   );
