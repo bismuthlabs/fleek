@@ -13,11 +13,10 @@ function Items({ currentItems }) {
     <>
       {currentItems && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {currentItems.map((item) => {
-            const { id, ...data } = item;
+          {currentItems.map(({ id, data }) => {
             return (
-              <Link href={`/product/${item.id}`}>
-                <ProductCard1 key={item.id} data={data} />
+              <Link href={`/product/${id}`}>
+                <ProductCard1 key={id} data={data} />
               </Link>
             );
           })}
