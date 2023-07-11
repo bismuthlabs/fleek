@@ -18,8 +18,9 @@ import {
   getDocumentsSortedByDateAdded,
 } from "./firebase/firestore/getData";
 import { DocumentData } from "firebase/firestore";
-import { filterByGender } from "@/utils/productFuctions";
+// import { filterByGender } from "@/utils/productFuctions";
 import { PostCardSkeleton } from "./components/PostCardSkeleton";
+import { filterByGender } from "@/lib/productFuctions";
 
 interface Category {
   name: string;

@@ -29,8 +29,8 @@ export const  filterByGender = (products:Product[] | undefined, gender:string) =
     };
   }
   
-  export const  filterItemsBySubtext = (items: Item[], subtext: string): Item[] =>{
-    return items.filter((item) => item.data.name.toLowerCase().includes(subtext.toLowerCase()));
+  export const  filterItemsBySubtext = (items: DocumentData[] | undefined, subtext: string): DocumentData[] |undefined=>{
+    return items?.filter((item) => item.data.name.toLowerCase().includes(subtext.toLowerCase()));
   }
   
 /*  // Usage example

@@ -1,5 +1,5 @@
-import "./globals.css";
-import Header from "./components/header";
+import "./styles/global.css";
+import { Header } from "./components/header";
 import Footer from "./components/footer";
 import { Poppins } from "next/font/google";
 import "@fortawesome/fontawesome-free/css/all.min.css";
