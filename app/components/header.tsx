@@ -102,6 +102,7 @@ export function Header() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleToggleSearch = () => {
+    console.log("hi");
     setShowSearch((prevState) => !prevState);
   };
   useEffect(() => {
@@ -243,7 +244,7 @@ export function Header() {
               </NavigationMenu>
             </div>
             <div className="flex items-center gap-4">
-              <div className="cursor-pointer">
+              <div className="cursor-pointer" onClick={handleToggleSearch}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -403,7 +404,10 @@ export function Header() {
           </Sheet>
           <div>Logo</div>
           <div className="flex items-center gap-4">
-            <div>
+            <div
+              className=" cursor-pointer "
+              onClick={() => handleToggleSearch}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -419,7 +423,7 @@ export function Header() {
                 />
               </svg>
             </div>
-            <div className="cursor-pointer" onClick={handleToggleSearch}>
+            <div className="cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
