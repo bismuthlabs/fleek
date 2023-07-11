@@ -84,10 +84,23 @@ const page = () => {
 
   return (
     <div>
-      <div className="flex justify-between w-full">
-        <select></select>
-        <button onClick={handleToggleSidebar}>Filter</button>
+      <div className="flex flex-row items-center">
+        <select
+          className="w-full p-2 border border-gray-300 border-t-0 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
+          aria-label="Sort"
+        >
+          <option value="price">Price</option>
+          <option value="rating">Rating</option>
+          <option value="popularity">Popularity</option>
+        </select>
+        <button
+          className="w-full px-4 py-2 text-white bg-black  hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black"
+          onClick={handleToggleSidebar}
+        >
+          Filter
+        </button>
       </div>
+
       <SidebarNav
         handleCloseSidebar={handleCloseSidebar}
         handleToggleSidebar={handleToggleSidebar}

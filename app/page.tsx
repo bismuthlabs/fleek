@@ -2,13 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { HeroSection } from "./components/heroSection";
 import { ProductCard, ProductCard1 } from "./components/productCards";
-import {
-  catMen,
-  catWomen,
-  faqs,
-  newArrivalsa,
-  dummyTrending,
-} from "./dummyData";
+import { faqs } from "./dummyData";
 import FAQ from "./components/FAQ";
 import contactus from "./assets/images/contactus.jpg";
 import Image from "next/image";
@@ -18,7 +12,6 @@ import {
   getDocumentsSortedByDateAdded,
 } from "./firebase/firestore/getData";
 import { DocumentData } from "firebase/firestore";
-// import { filterByGender } from "@/utils/productFuctions";
 import { PostCardSkeleton } from "./components/PostCardSkeleton";
 import { filterByGender } from "@/lib/productFuctions";
 

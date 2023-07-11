@@ -404,10 +404,7 @@ export function Header() {
           </Sheet>
           <div>Logo</div>
           <div className="flex items-center gap-4">
-            <div
-              className=" cursor-pointer "
-              onClick={() => handleToggleSearch}
-            >
+            <div className=" cursor-pointer " onClick={handleToggleSearch}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
